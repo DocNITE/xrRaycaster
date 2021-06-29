@@ -21,7 +21,7 @@ xrGame
 	keyPressed = {},
 	
 	moveSpeed = {walk = 2, run = 4},
-	moveMode = 6;
+	moveMode = moveSpeed.walk;
 
  }
  
