@@ -103,7 +103,7 @@ function xrScreen:visibleWindow()
 			while x_counter <= xrScreen.screen.pixel_Y do
 
 				ShowTexture(0, xrScreen.screen.pixel[counter+1][x_counter+1]);
-				UpdateTexture(xrScreen.screen.pixel[counter+1][x_counter+1], xrScreen:anx(counter), xrScreen:any(x_counter), xrScreen:anx(counter+1), xrScreen:any(x_counter+1), "black")
+				UpdateTexture(xrScreen.screen.pixel[counter+1][x_counter+1], xrScreen:anx(counter), xrScreen:any(x_counter), xrScreen:anx(counter+2), xrScreen:any(x_counter+2), "black")
 				
 				x_counter = x_counter + 1;
 			end
@@ -146,7 +146,7 @@ function xrScreen:screenDraw(pX, pY, pColor)
 	if xrScreen.pixel_Visible == true then
 
 		if xrBuffer:readBuffer(pX-1, pY-1) == false then
-			UpdateTexture(xrScreen.screen.pixel[pX][pY], xrScreen:anx(pX), xrScreen:any(pY), xrScreen:anx(pX+1), xrScreen:any(pY+1), xrScreen.color[pColor])
+			UpdateTexture(xrScreen.screen.pixel[pX][pY], xrScreen:anx(pX), xrScreen:any(pY), xrScreen:anx(pX+2), xrScreen:any(pY+2), xrScreen.color[pColor])
 			xrBuffer:writeBuffer(pX-1, pY-1, pColor);
 		end
 	

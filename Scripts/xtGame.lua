@@ -17,7 +17,7 @@ xrGame
 
 	startWorld = "intro",
 	
-	timers = {Renderer},
+	timers = {Renderer, FrameTime},
 	keyPressed = {},
 	
 	moveSpeed = {walk = 2, run = 4},
@@ -32,15 +32,26 @@ local function vievPortInint(mode)
 
 	if mode == OPTIMAL then
 
-		start 
+		--[[start 
 		={
-			position = xrScreen.screen.pixel_X/2-((xrScreen.screen.pixel_X/2)/2),
-			size = xrScreen.screen.pixel_X/2+((xrScreen.screen.pixel_X/2)/2)
+			position = 20,
+			size = xrScreen.screen.pixel_X - 40
 		 };
 		ender
 		={
-			position = xrScreen.screen.pixel_Y/2-((xrScreen.screen.pixel_Y/2)/2),
-			size = xrScreen.screen.pixel_Y/2+((xrScreen.screen.pixel_Y/2)/2)-10
+			position = 10,
+			size = xrScreen.screen.pixel_Y - 30
+		 };]]
+		
+		start 
+		={
+			position = 20,
+			size = xrScreen.screen.pixel_X - 40
+		 };
+		ender
+		={
+			position = 10,
+			size = xrScreen.screen.pixel_Y - 40
 		 };
 		
 		
@@ -75,7 +86,7 @@ function g_showWindow(pID)
 		table.insert(xrGame.keyPressed, false)
 	end
 	
-	local start, ender = vievPortInint(FULLSCREEN);
+	local start, ender = vievPortInint(0);
 	
 	xrScreen:createViewPort(start, ender);
 	g_loadWorld(xrGame.startWorld);

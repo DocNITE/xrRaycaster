@@ -6,6 +6,9 @@ xrBuffer
 	
  }
  
+local r_oldFrameTime = 0.0;
+local r_frameTime = 0.0;
+
 local r_time = 0;
 local r_oldTime = 0;
 local r_frameTick = 10; 
@@ -209,7 +212,9 @@ function xrBuffer:writeEndBuffer(pX, pFirst, pEnd, pColor)
 	end
 	
 	-- Render player map
-	RenderMap();
+	--RenderMap();
+	r_oldFrameTime = r_oldFrameTime + 1;
+	callEvent("OnRender");
 	
 end
 
@@ -252,6 +257,14 @@ function RenderMap()
 
 end
 
+local function onUpdateFrameTime()
+
+	r_frameTime = r_oldFrameTime;
+	r_oldFrameTime = 0.0;
+	--print(r_frameTime)
+
+end
+
 local co_render = nil;
 
 local function coroutineRender()
@@ -279,11 +292,13 @@ local function coroutineRender()
 	
 end
 
-function renderTick(toggle)
+function renderTick(toggle) --FrameTime
 	if toggle == true then
-		xrGame.timers.Renderer = SetTimer(coroutineRender, r_frameTick, 1)
+		xrGame.timers.Renderer = SetTimer(coroutineRender, r_frameTick, 1);
+		xrGame.timers.FrameTime = SetTimer(onUpdateFrameTime, 1000, 1);
 	elseif toggle == false then
 		KillTimer(xrGame.timers.Renderer);
+		KillTimer(xrGame.timers.FrameTime);
 	end
 end
 
